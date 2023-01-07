@@ -80,19 +80,18 @@ pipeline {
 			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
 			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} () finished with RESULT: "SUCCESS",
-           		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
-				/*DRY_RUN:${DRY_RUN}
-				ACTIVITY:${ACTIVITY}
-      				DELIVERY_ID:${DELIVERY_ID}
-      				TAR_FILE:${TAR_FILE}
-      				APPLICATION:${APPLICATION}
-				SUBSYSTEM:${SUBSYSTEM}
-      				DEPLOY_ENVIRONMENT:${DEPLOY_ENVIRONMENT}
-      				TESTMODE:${TESTMODE}
-     				DEBUG:${DEBUG}
-      				E_MAIL:${E_MAIL}
-      				E_MAIL_ADDRESS:${E_MAIL_ADDRESS}
-      				TICKET:${TICKET}"*/
+           		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} \n More Info can be found here: ${env.BUILD_URL} \n DRY_RUN:${DRY_RUN}
+				\n ACTIVITY:${ACTIVITY}
+      				\n DELIVERY_ID:${DELIVERY_ID}
+      				\n TAR_FILE:${TAR_FILE}
+      				\n APPLICATION:${APPLICATION}
+				\n SUBSYSTEM:${SUBSYSTEM}
+      				\n DEPLOY_ENVIRONMENT:${DEPLOY_ENVIRONMENT}
+      				\n TESTMODE:${TESTMODE}
+     				\n DEBUG:${DEBUG}
+      				\n E_MAIL:${E_MAIL}
+      				\n E_MAIL_ADDRESS:${E_MAIL_ADDRESS}
+      				\n TICKET:${TICKET}"
 			//attachlog: true
 			//}
 		}
