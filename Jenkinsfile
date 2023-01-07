@@ -74,7 +74,7 @@ pipeline {
         }
         
     }
-	/*post {
+	post {
 		always { 
 			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
@@ -82,7 +82,7 @@ pipeline {
            		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
 			//attachlog: true
 			//}
+		}
 	}
-	}*/
 }
 
