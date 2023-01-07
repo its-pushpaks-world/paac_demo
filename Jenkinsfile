@@ -71,7 +71,7 @@ pipeline {
         }
         
     }
-	post {
+	/*post {
 		always { 
 			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
@@ -80,6 +80,6 @@ pipeline {
 			//attachlog: true
 			//}
 	}
-	}
+	}*/
 }
 
