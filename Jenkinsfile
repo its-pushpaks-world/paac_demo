@@ -67,6 +67,7 @@ pipeline {
 		//Create log file
                sh ' ls -lrt'
 	       sh 'cur_time= now=`date +"%m_%d_%Y_%hh_%mm_%ss"`'
+		   sh ' echo $cur_time '
 		    sh ' cat >> ${DELIVERY_ID}.log.txt'
                 
                 //Add Run time in log
