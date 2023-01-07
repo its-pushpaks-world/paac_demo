@@ -80,7 +80,7 @@ pipeline {
 			//if (params.E_MAIL){
 			
 			emailext to: "${E_MAIL_ADDRESS}",
-			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} () finished with RESULT: "SUCCESS"",
+			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} () finished with RESULT: SUCCESS",
            		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} \n More Info can be found here: ${env.BUILD_URL}"
 			
 			
