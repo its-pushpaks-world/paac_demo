@@ -55,7 +55,7 @@ pipeline {
                 sh 'tar -xvf ${TAR_FILE}'
             }
         }
-        stage('post') {
+        stage('last') {
             steps {
                 //Create log file
                 sh 'ls -lrt'
@@ -71,4 +71,7 @@ pipeline {
             }
         }
     }
+	post {
+		always { echo "End"}
+	}
 }
