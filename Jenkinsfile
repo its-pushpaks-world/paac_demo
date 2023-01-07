@@ -3,16 +3,17 @@ pipeline {
     options { timestamps () }
 	parameters {
 			booleanParam name:"DRY_RUN", description:"dryrun?", defaultValue:true
-      choice name:'ACTIVITY', description:"What should be done?", choices:['Backup','Check_config', 'Copy', 'Deployment', 'Test_connectivity']
-      string name:'DELIVERY_ID', description:"D2CCM Delivery ID", defaultValue:"KIAS2000_SN_0000"
-      string name:'TAR_FILE', description:"Name of tar file without ending (Entry can also be empty)(.zip, .tar.gz and tar supported)"
-      choice name:'APPLICATION', description:"Where should software be deployed?", choices:['bicc','cs']
-      choice name:'DEPLOY_ENVIRONMENT', description:"Temporary Variable", choices:['prod','dev']
-      booleanParam name:"TESTMODE", description:"TESTMODE?", defaultValue:false
-      booleanParam name:'DEBUG', description:"Additional debug output?", defaultValue:false
-      booleanParam name:'E_MAIL', description:"Create E_MAIL?", defaultValue:false
-      string name:'E_MAIL_ADDRESS', description:"Recipient(s) of job status/result (comma or semicolon separated)", defaultValue:"itspushpaksworld496@gmail.com;"
-      string name:'TICKET', description:"Ticket number for SOX update (only for PRD environment)", defaultValue:"Z_SRT0000A"
+		        choice name:'ACTIVITY', description:"What should be done?", choices:['Backup','Check_config', 'Copy', 'Deployment', 'Test_connectivity']
+    			string name:'DELIVERY_ID', description:"D2CCM Delivery ID", defaultValue:"KIAS2000_SN_0000"
+	      		string name:'TAR_FILE', description:"Name of tar file without ending (Entry can also be empty)(.zip, .tar.gz and tar supported)"
+			choice name:'APPLICATION', description:"Where should software be deployed?", choices:['bicc','cs']
+			choice name:'SUBSYSTEM', description:"subsystem?", choices:['laura1','laura2']
+			choice name:'DEPLOY_ENVIRONMENT', description:"Temporary Variable", choices:['PRD','DEV']
+			booleanParam name:"TESTMODE", description:"TESTMODE?", defaultValue:false
+			booleanParam name:'DEBUG', description:"Additional debug output?", defaultValue:true
+			booleanParam name:'E_MAIL', description:"Create E_MAIL?", defaultValue:false
+			string name:'E_MAIL_ADDRESS', description:"Recipient(s) of job status/result (comma or semicolon separated)", defaultValue:"itspushpaksworld496@gmail.com;"
+			string name:'TICKET', description:"Ticket number for SOX update (only for PRD environment)", defaultValue:"Z_SRT0000A"
 			}
     stages {
         
@@ -75,11 +76,29 @@ pipeline {
         
     }
 	post {
-		always { 
+		success { 
 			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
-            		subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-           		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} () finished with RESULT: "SUCCESS",
+           		body: "
+				${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}
+			
+				DRY_RUN:${DRY_RUN}
+				ACTIVITY:${ACTIVITY}
+      				DELIVERY_ID:${DELIVERY_ID}
+      				TAR_FILE:${TAR_FILE}
+      				APPLICATION:${APPLICATION}
+				SUBSYSTEM:${SUBSYSTEM}
+      				DEPLOY_ENVIRONMENT:${DEPLOY_ENVIRONMENT}
+      				TESTMODE:${TESTMODE}
+     				DEBUG:${DEBUG}
+      				E_MAIL:${E_MAIL}
+      				E_MAIL_ADDRESS:${E_MAIL_ADDRESS}
+      				TICKET:${TICKET}
+			
+			
+			
+			"
 			//attachlog: true
 			//}
 		}
