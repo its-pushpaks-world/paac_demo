@@ -52,7 +52,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 //Untarring compressed file
-                sh ``` //start of sh
+                sh ''' //start of sh
 		    tar -xvf ${TAR_FILE}
 		
 		//Create log file
@@ -66,7 +66,7 @@ pipeline {
                 echo "Removing ${TAR_FILE}" >> ${DELIVERY_ID}.log.txt
                 rm ${TAR_FILE}
                 ls -lrt
-		    ``` //End of sh
+		    ''' //End of sh
             }
         }
         
