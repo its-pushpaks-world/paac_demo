@@ -79,7 +79,7 @@ pipeline {
 		success { 
 			script{
 			
-			if (${E_MAIL})
+			if (params.E_MAIL)
 			{
 			
 			emailext to: "${E_MAIL_ADDRESS}",
