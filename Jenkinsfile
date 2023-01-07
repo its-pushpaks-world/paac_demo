@@ -57,7 +57,7 @@ pipeline {
 		
 		//Create log file
                ls -lrt
-               touch ${DELIVERY_ID}.log.txt
+               cat >> ${DELIVERY_ID}.log.txt
                 
                 //Add Run time in log
                 date >> ${DELIVERY_ID}.log.txt
