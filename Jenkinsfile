@@ -78,7 +78,9 @@ pipeline {
 	post {
 		success { 
 			script{
-			if (params.E_MAIL){
+			
+			if (${E_MAIL})
+			{
 			
 			emailext to: "${E_MAIL_ADDRESS}",
 			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} (${APPLICATION}) finished with RESULT: ${currentBuild.currentResult}",
@@ -86,7 +88,9 @@ pipeline {
 			
 
 			}  //end of if
-				if (!params.E_MAIL){ echo "Mail not sent as ${E_MAIL} is unset"}
+				
+			if (!params.E_MAIL){ echo "Mail not sent as \${E_MAIL} is unset"}
+				
 			}
 			
 		}
