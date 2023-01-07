@@ -18,6 +18,12 @@ pipeline {
     stages {
         
         stage('Get Input') {
+		
+		input {
+                	message "Can we Proceed?"
+                	ok "Yes"
+                	submitter "project1, pushpak2"
+		}
             steps {
                 sh 'echo "Get Input" '
             }
