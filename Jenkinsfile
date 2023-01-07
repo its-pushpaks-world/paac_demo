@@ -53,7 +53,9 @@ pipeline {
             steps {
                 //Untarring compressed file //start of sh
                 sh ''' 
-		    tar -xvf ${TAR_FILE}
+		
+		pwd
+		tar -xvf ${TAR_FILE}
 		
 		//Create log file
                ls -lrt
