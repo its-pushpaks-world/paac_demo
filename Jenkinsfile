@@ -3,13 +3,11 @@ pipeline {
     options { timestamps () }
 	parameters {
 			booleanParam name:"DRY_RUN", description:"dryrun?", defaultValue:true
-      string name:'temp_var', description:"Temporary Variable", defaultValue:"Temporary"
       choice name:'ACTIVITY', description:"What should be done?", choices:['Backup','Check_config', 'Copy', 'Deployment', 'Test_connectivity']
       string name:'DELIVERY_ID', description:"D2CCM Delivery ID", defaultValue:"KIAS2000_SN_0000"
       string name:'TAR_FILE', description:"Name of tar file without ending (Entry can also be empty)(.zip, .tar.gz and tar supported)"
       choice name:'APPLICATION', description:"Where should software be deployed?", choices:['bicc','cs']
       choice name:'DEPLOY_ENVIRONMENT', description:"Temporary Variable", choices:['prod','dev']
-      booleanParam name:"DRY_RUN", description:"dryrun?", defaultValue:true
       booleanParam name:"TESTMODE", description:"TESTMODE?", defaultValue:false
       booleanParam name:'DEBUG', description:"Additional debug output?", defaultValue:false
       booleanParam name:'E_MAIL', description:"Create E_MAIL?", defaultValue:false
