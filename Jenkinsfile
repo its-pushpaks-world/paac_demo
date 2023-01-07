@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	triggers {
+        githubPush()
+      }
     options { timestamps () }
 	parameters {
 			booleanParam name:"DRY_RUN", description:"dryrun?", defaultValue:true
