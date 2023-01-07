@@ -22,11 +22,11 @@ pipeline {
             }
         }
         
-        /*stage('Test Connectivity') {
+        stage('Test Connectivity') {
             steps {
                 sh 'echo "Test Connectivity" '
             }
-        }*/
+        }
         
         stage('Check config') {
             steps {
@@ -73,11 +73,13 @@ pipeline {
     }
 	post {
 		always { 
-			if (params.E_MAIL){
+			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
             		subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
            		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
 			//attachlog: true
-			}}
+			//}
 	}
+	}
+}
 
