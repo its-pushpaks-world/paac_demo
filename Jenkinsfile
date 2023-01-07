@@ -52,26 +52,32 @@ pipeline {
         stage('Deploy') {
             steps {
                 //Untarring compressed file
-                sh 'tar -xvf ${TAR_FILE}'
-            }
-        }
-        stage('last') {
-            steps {
-                //Create log file
-                sh 'ls -lrt'
-                sh 'touch ${DELIVERY_ID}.log.txt'
+                sh ``` //start of sh
+		    tar -xvf ${TAR_FILE}
+		
+		//Create log file
+               ls -lrt
+               touch ${DELIVERY_ID}.log.txt
                 
-                //Add Run time in log'
-                sh 'date >> ${DELIVERY_ID}.log.txt'
+                //Add Run time in log
+                date >> ${DELIVERY_ID}.log.txt
                 
                 //Remove tar and adding in log file
-                sh 'echo "Removing ${TAR_FILE}" >> ${DELIVERY_ID}.log.txt'
-                sh 'rm ${TAR_FILE}'
-                sh 'ls -lrt'
+                echo "Removing ${TAR_FILE}" >> ${DELIVERY_ID}.log.txt
+                rm ${TAR_FILE}
+                ls -lrt
+		    ``` //End of sh
             }
         }
+        
     }
 	post {
-		always { echo "End"}
+		always { 
+			when {${E_MAIL}}
+			emailext to: "${E_MAIL_ADDRESS}",
+            		subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+           		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
+			attachlog: true
+		}
 	}
 }
