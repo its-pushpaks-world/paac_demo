@@ -77,6 +77,7 @@ pipeline {
     }
 	post {
 		success { 
+			script{
 			if (params.E_MAIL){
 			
 			emailext to: "${E_MAIL_ADDRESS}",
@@ -84,7 +85,7 @@ pipeline {
            		body: ": Job ${env.JOB_NAME} \n More Info can be found here: ${env.BUILD_URL} \n DRY_RUN:${DRY_RUN} \n ACTIVITY:${ACTIVITY}\n DELIVERY_ID:${DELIVERY_ID} \n TAR_FILE:${TAR_FILE} \n APPLICATION:${APPLICATION} \n SUBSYSTEM:${SUBSYSTEM} \n DEPLOY_ENVIRONMENT:${DEPLOY_ENVIRONMENT} \n TESTMODE:${TESTMODE} \n DEBUG:${DEBUG} \n E_MAIL:${E_MAIL} \n E_MAIL_ADDRESS:${E_MAIL_ADDRESS} \n TICKET:${TICKET}"
 			
 
-			}
+			}}
 			
 		}
 	}
