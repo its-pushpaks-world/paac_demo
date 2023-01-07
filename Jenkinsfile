@@ -11,7 +11,7 @@ pipeline {
       booleanParam name:"TESTMODE", description:"TESTMODE?", defaultValue:false
       booleanParam name:'DEBUG', description:"Additional debug output?", defaultValue:false
       booleanParam name:'E_MAIL', description:"Create E_MAIL?", defaultValue:false
-      string name:'E_MAIL_ADDRESS', description:"itspushpaksworld496@gmail.com;", defaultValue:"Recipient(s) of job status/result (comma or semicolon separated)"
+      string name:'E_MAIL_ADDRESS', description:"Recipient(s) of job status/result (comma or semicolon separated)", defaultValue:"itspushpaksworld496@gmail.com;"
       string name:'TICKET', description:"Ticket number for SOX update (only for PRD environment)", defaultValue:"Z_SRT0000A"
 			}
     stages {
