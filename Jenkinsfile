@@ -80,9 +80,7 @@ pipeline {
 			//if (params.E_MAIL){
 			emailext to: "${E_MAIL_ADDRESS}",
 			subject: "generic_delivery: Deployment of ${DELIVERY_ID} in ${DEPLOY_ENVIRONMENT} () finished with RESULT: "SUCCESS",
-           		body: "
-				${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}
-			
+           		body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}
 				DRY_RUN:${DRY_RUN}
 				ACTIVITY:${ACTIVITY}
       				DELIVERY_ID:${DELIVERY_ID}
@@ -94,11 +92,7 @@ pipeline {
      				DEBUG:${DEBUG}
       				E_MAIL:${E_MAIL}
       				E_MAIL_ADDRESS:${E_MAIL_ADDRESS}
-      				TICKET:${TICKET}
-			
-			
-			
-			"
+      				TICKET:${TICKET}"
 			//attachlog: true
 			//}
 		}
