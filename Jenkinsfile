@@ -52,23 +52,23 @@ pipeline {
         stage('Deploy') {
             steps {
                 //Untarring compressed file //start of sh
-                sh ''' 
+                //sh '''
 		
-		pwd
-		tar -xvf ${TAR_FILE}
+		sh ' pwd'
+		sh ' tar -xvf ${TAR_FILE}'
 		
 		//Create log file
-               ls -lrt
-               cat >> ${DELIVERY_ID}.log.txt
+               sh ' ls -lrt'
+               sh ' cat >> ${DELIVERY_ID}.log.txt'
                 
                 //Add Run time in log
-                date >> ${DELIVERY_ID}.log.txt
+                sh ' date >> ${DELIVERY_ID}.log.txt'
                 
                 //Remove tar and adding in log file
-                echo "Removing ${TAR_FILE}" >> ${DELIVERY_ID}.log.txt
-                rm ${TAR_FILE}
-                ls -lrt
-		    ''' 
+               sh ' echo "Removing ${TAR_FILE}" >> ${DELIVERY_ID}.log.txt'
+                sh ' rm ${TAR_FILE}'
+                sh ' ls -lrt'
+		    //''' 
 		    //End of sh
             }
         }
