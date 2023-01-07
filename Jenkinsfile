@@ -69,7 +69,7 @@ pipeline {
 		
 		//Create log file
                sh ' ls -lrt'
-	       sh 'cur_time=`date +"%m_%d_%Y_%hh_%mm_%ss"`'
+	       sh 'cur_time=`date +"%m_%d_%Y_%H_%M_%S"`'
 		    sh ' echo ${cur_time} '
 		    sh ' cat >> ${DELIVERY_ID}.log.txt'
                 
